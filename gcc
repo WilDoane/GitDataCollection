@@ -1,0 +1,16 @@
+# where is the real gcc located? to find out, type at the command prompt
+#   which gcc
+
+GCC=/usr/bin/gcc
+
+# run gcc with the full list of arguments from the CLI ($@), 
+# capturing STDERR (2) to STDOUT (&1)
+# and store the STDOUT (i.e., the compiler output) in the variable RESULT
+RESULT=$($GCC $@ 2>&1)
+
+# may want to change to  -q -am to quiet the git summary output
+git commit -q -am "$(echo "$GCC $@\n\n$RESULT")" 
+#git push
+
+# display the compiler output to the user
+echo "\n$RESULT"
