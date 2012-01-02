@@ -8,8 +8,12 @@ GCC=/usr/bin/gcc
 # and store the STDOUT (i.e., the compiler output) in the variable RESULT
 RESULT=$($GCC $@ 2>&1)
 
-# may want to change to  -q -am to quiet the git summary output
-git commit -q -am "$(echo "$GCC $@\n\n$RESULT")" 
+# add modified AND new files to the index
+git add .
+
+# -q to quiet the git summary output
+git commit -q -m "$(echo "$GCC $@\n\n$RESULT")" 
+
 #git push
 
 # display the compiler output to the user
