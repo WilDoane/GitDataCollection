@@ -1,0 +1,6 @@
+# to be added to the end of .bashrc or .zshrc
+alias gcc='~/research-compiler.sh'
+
+mkdir enee150
+cd enee150
+git init
