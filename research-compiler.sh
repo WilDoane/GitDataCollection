@@ -1,3 +1,5 @@
+# An instrumentation of the gcc compiler command to push to a GitHub repository
+
 # where is the real gcc located? to find out, type at the command prompt
 #   which gcc
 
