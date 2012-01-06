@@ -4,7 +4,7 @@
 set gcccompiler = /usr/local/bin/gcc
 
 # Creating a temporary file to store compiler output
-touch ~/.ENEE150CompilerOutput.txt
+set tempfile = `mktemp`
 
 # Constructing the gcc compiler call from command-line arguments
 set compilerCall = ""
@@ -15,7 +15,7 @@ foreach x ($argv)
 end
 
 # Compiling the code and sinking gcc messages (stderr) to a file
-($gcccompiler $compilerCall) >&! ~/.ENEE150CompilerOutput.txt
+($gcccompiler $compilerCall) >&! $tempfile
 
 # add modified AND new files to the index
 git add .
@@ -27,7 +27,8 @@ git add .
 git commit -q -F- << EOF
 gcc$compilerCall
 
-`cat ~/.ENEE150CompilerOutput.txt`
+`cat $tempfile`
+
 EOF
 
 # push the repository to a remote Github repo
@@ -35,4 +36,7 @@ EOF
 git push origin master >& /dev/null
 
 # send compiler output to the console
-cat ~/.ENEE150CompilerOutput.txt > /dev/tty
+cat $tempfile > /dev/tty
+
+# remove the temp file
+/bin/rm -f $tempfile
