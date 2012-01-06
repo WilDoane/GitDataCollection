@@ -36,7 +36,7 @@ EOF
 git push origin master >& /dev/null
 
 # send compiler output to the console
-cat $tempfile > /dev/tty
+cat $tempfile
 
 # remove the temp file
 /bin/rm -f $tempfile
