@@ -18,7 +18,7 @@ end
 ($gcccompiler $compilerCall) >&! $tempfile
 
 # add modified AND new files to the index
-git add .
+git add . >& /dev/null
 
 # -q to quiet the git summary output
 # the complicated message format is to allow us to post both a summary (the compile command used)
