@@ -24,12 +24,12 @@ git add . >& /dev/null
 # the complicated message format is to allow us to post both a summary (the compile command used)
 # and an extended description (the compiler feedback to the user)
 # To create a multi-line message, we use http://stackoverflow.com/questions/5064563/add-line-break-to-git-commit-m-from-command-line
-git commit -q -F- << EOF
+git commit -q -F- << EOF >& /dev/null
 gcc$compilerCall
 
 `cat $tempfile`
 
-EOF >& /dev/null
+EOF
 
 # push the repository to a remote Github repo
 # and suppress console output
