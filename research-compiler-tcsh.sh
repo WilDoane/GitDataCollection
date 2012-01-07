@@ -29,7 +29,7 @@ gcc$compilerCall
 
 `cat $tempfile`
 
-EOF
+EOF >& /dev/null
 
 # push the repository to a remote Github repo
 # and suppress console output
