@@ -41,7 +41,7 @@ if ( -d ~/.ssh ) then
   exit
 else
   echo "Now you should"
-  echo '  ssh-keygen -t rsa -C "your_email@youremail.com"'
+  echo '  ssh-keygen -t rsa -C "student_email@youremail.com"'
   echo "and accept the default storage directory and enter a blank password"
   echo "then, "
   echo "  cat ~/.ssh/id_rsa.pub"
