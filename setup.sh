@@ -27,7 +27,7 @@ else
 endif
 
 cd ~
-if ( -d ~/.ssh ) then
+if ( -d ~/ENEE150 ) then
   echo "The user already has an ENEE150 directory..."
   echo "   using existing directory"
 else
