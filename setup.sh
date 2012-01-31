@@ -31,6 +31,7 @@ mkdir ENEE150
 cd ENEE150
 
 git init
+touch .gitignore
 printf "\n*.out\n" >> .gitignore
 
 git remote add origin git@github.com:TLPLEngineeringEdResearch/$1.git
