@@ -9,15 +9,15 @@ if ( "$1" == "" ) then
   exit
 endif
 
-curl -k https://raw.github.com/WilDoane/GitDataCollection/master/research-compiler-$SHELL.sh -o ~/research-compiler.sh
-
 chmod 700 ~/research-compiler.sh
 
 if ( "$SHELL" =~ *tcsh* ) then
   # tcsh version (UMD default shell)
+  curl -k https://raw.github.com/WilDoane/GitDataCollection/master/research-compiler-tcsh.sh -o ~/research-compiler.sh
   echo 'alias gcc "~/research-compiler.sh"' >> ~/.aliases
   source ~/.aliases
 else if ( "$SHELL" =~ *bash ) then
+  curl -k https://raw.github.com/WilDoane/GitDataCollection/master/research-compiler-bash.sh -o ~/research-compiler.sh
   echo 'alias gcc="~/research-compiler.sh"' >> ~/.bash_aliases
   source ~/.bash_aliases
 else
