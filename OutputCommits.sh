@@ -12,6 +12,14 @@ do
   git co $commit1
   if [ -e $1 ]; then
     cp $1 ../$1.output/$commit1.html
+    # do more here... add spans, add html
+    # that happens when a file has been renamed over time in the git repo?
+
+
+    # students won't be using git mv
+
+
+
   fi
 
 done < ~/gittemp
