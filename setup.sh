@@ -27,7 +27,13 @@ else
 endif
 
 cd ~
-mkdir ENEE150
+if ( -d ~/.ssh ) then
+  echo "The user already has an ENEE150 directory..."
+  echo "   using existing directory"
+else
+  mkdir ENEE150  
+endif
+
 cd ENEE150
 
 git init
@@ -38,10 +44,13 @@ git remote add origin git@github.com:TLPLEngineeringEdResearch/$1.git
 
 cd ~
 if ( -d ~/.ssh ) then
-  echo "The user already has an SSH key... check out the ~/.ssh directory and http://help.github.com/linux-set-up-git/"
+  echo "The user already has an SSH key..."
+  echo "   check out the ~/.ssh directory and instructions from http://help.github.com/linux-set-up-git/"
   exit
 else
   echo "Now you should"
+  echo '  git config --global user.name "Students Name"'
+  echo '  git config --global user.email student_email@youremail.com"'
   echo '  ssh-keygen -t rsa -C "student_email@youremail.com"'
   echo "and accept the default storage directory and enter a blank password"
   echo "then, "
