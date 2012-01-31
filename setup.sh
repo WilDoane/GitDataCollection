@@ -1,4 +1,4 @@
-#!/bin/tcsh
+#!/usr/bin/tcsh
 
 if ( "$1" == "" ) then
   echo ""
