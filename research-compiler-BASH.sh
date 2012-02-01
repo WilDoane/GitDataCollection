@@ -13,6 +13,9 @@ RESULT=$($GCC $@ 2>&1)
 # add modified AND new files to the index
 git add .
 
+# add deleted files to the index
+git add -u
+
 # -q to quiet the git summary output
 # the complicated message format is to allow us to post both a summary (the compile command used)
 # and an extended description (the compiler feedback to the user)
