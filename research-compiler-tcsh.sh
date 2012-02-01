@@ -20,6 +20,9 @@ end
 # add modified AND new files to the index
 git add . >& /dev/null
 
+# add deleted files to the index
+git add -u >& /dev/null
+
 # -q to quiet the git summary output
 # the complicated message format is to allow us to post both a summary (the compile command used)
 # and an extended description (the compiler feedback to the user)
