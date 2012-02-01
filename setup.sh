@@ -17,7 +17,7 @@ if ( "$SHELL" =~ *tcsh* ) then
   echo 'alias gcc "~/research-compiler.sh"' >> ~/.aliases
   source ~/.aliases
 else if ( "$SHELL" =~ *bash ) then
-  curl -k https://raw.github.com/WilDoane/GitDataCollection/master/research-compiler-bash.sh -o ~/research-compiler.sh
+  curl -k https://raw.github.com/WilDoane/GitDataCollection/master/research-compiler-BASH.sh -o ~/research-compiler.sh
   echo 'alias gcc="~/research-compiler.sh"' >> ~/.bash_aliases
   source ~/.bash_aliases
 else
