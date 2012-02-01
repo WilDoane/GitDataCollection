@@ -15,7 +15,7 @@ do
 	echo "<a href='$commit2'>previous</a><br />" >> ../$1.output/index.html 	
 	echo "<a name='$commit1'></a>" >> ../$1.output/index.html
 	cat $1 >> ../$1.output/index.html
-	echo "<br />&nbsp;<hr />&nbsp;<br />&nbsp;" > ../$1.output/index.html
+	echo "<br />&nbsp;<hr />&nbsp;<br />&nbsp;" >> ../$1.output/index.html
 
     # cp $1 ../$1.output/$commit1.html
     # do more here... add spans, add html
