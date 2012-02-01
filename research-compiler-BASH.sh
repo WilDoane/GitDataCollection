@@ -11,17 +11,24 @@ GCC=/usr/local/bin/gcc
 RESULT=$($GCC $@ 2>&1)
 
 # add modified AND new files to the index
-git add . 2>& /dev/null
+# Redirection solution adapted from http://www.xaprb.com/blog/2006/06/06/what-does-devnull-21-mean/
+git add . > /dev/null 2>&1
 
 # add deleted files to the index
-git add -u 2>& /dev/null
+git add -u > /dev/null 2>&1
 
 # -q to quiet the git summary output
 # the complicated message format is to allow us to post both a summary (the compile command used)
 # and an extended description (the compiler feedback to the user)
-git commit -q -m "$(echo \"$GCC $@\n\n$RESULT\")"
+# To create a multi-line message, we use http://stackoverflow.com/questions/5064563/add-line-break-to-git-commit-m-from-command-line
+git commit -q -F- << EOF > /dev/null 2>&1
+gcc $@
 
-#git push
+$RESULT
+
+EOF
+
+git push origin master > /dev/null 2>&1
 
 # display the compiler output to the user
-echo "\n$RESULT"
+echo "$RESULT"
