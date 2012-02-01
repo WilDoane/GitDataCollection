@@ -11,15 +11,15 @@ GCC=/usr/local/bin/gcc
 RESULT=$($GCC $@ 2>&1)
 
 # add modified AND new files to the index
-git add .
+git add . 2>& /dev/null
 
 # add deleted files to the index
-git add -u
+git add -u 2>& /dev/null
 
 # -q to quiet the git summary output
 # the complicated message format is to allow us to post both a summary (the compile command used)
 # and an extended description (the compiler feedback to the user)
-git commit -q -m "$(echo "$GCC $@\n\n$RESULT")" 
+git commit -q -m '$(echo "$GCC $@\n\n$RESULT")'
 
 #git push
 
