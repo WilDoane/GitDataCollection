@@ -10,7 +10,7 @@ git log --pretty=format:"%h %p %ai" > ~/gittemp
 
 while read present earlier commitdate
 do
-  git co $commit1
+  git co $present
   if [ -e $1 ]; then
 	echo "<a name='$present'></a>" >> ../$1.output/index.html
 	echo "<a href='#$earlier'>EARLIER</a>" >> ../$1.output/index.html 
