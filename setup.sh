@@ -50,7 +50,7 @@ if ( -d ~/.ssh ) then
 else
   echo "Now you should"
   echo '  git config --global user.name "Students Name"'
-  echo '  git config --global user.email student_email@youremail.com"'
+  echo '  git config --global user.email "student_email@youremail.com"'
   echo '  ssh-keygen -t rsa -C "student_email@youremail.com"'
   echo "and accept the default storage directory and enter a blank password"
   echo "then, "
