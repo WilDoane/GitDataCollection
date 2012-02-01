@@ -1,7 +1,10 @@
 # An instrumentation of the gcc compiler command to push to a GitHub repository
 
 # Getting the actual path to GCC
-set gcccompiler = /usr/local/bin/gcc
+if ( -e /usr/gcc ) set gcccompiler = /usr/gcc
+if ( -e /usr/bin/gcc ) set gcccompiler = /usr/bin/gcc
+if ( -e /usr/local/gcc ) set gcccompiler = /usr/local/gcc
+if ( -e /usr/local/bin/gcc ) set gcccompiler = /usr/local/bin/gcc
 
 # Creating a temporary file to store compiler output
 set tempfile = `mktemp`

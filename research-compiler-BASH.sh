@@ -3,7 +3,10 @@
 # where is the real gcc located? to find out, type at the command prompt
 #   which gcc
 
-GCC=/usr/local/bin/gcc
+if [ -e /usr/gcc ]; then GCC=/usr/gcc; fi;
+if [ -e /usr/bin/gcc ]; then GCC=/usr/bin/gcc; fi;
+if [ -e /usr/local/gcc ]; then GCC=/usr/local/gcc; fi;
+if [ -e /usr/local/bin/gcc ]; then GCC=/usr/local/bin/gcc; fi;
 
 # run gcc with the full list of arguments from the CLI ($@), 
 # capturing STDERR (2) to STDOUT (&1)
