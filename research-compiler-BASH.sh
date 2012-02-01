@@ -19,7 +19,7 @@ git add -u 2>& /dev/null
 # -q to quiet the git summary output
 # the complicated message format is to allow us to post both a summary (the compile command used)
 # and an extended description (the compiler feedback to the user)
-git commit -q -m '$(echo "$GCC $@\n\n$RESULT")'
+git commit -q -m "$(echo \"$GCC $@\n\n$RESULT\")"
 
 #git push
 
