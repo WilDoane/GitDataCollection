@@ -7,12 +7,12 @@ function usage () {
    cat <<EOS
 ${0} - Generate an HTML version of git commits for a given file
 
-Usage ${0} file.txt
+Usage: ${0} file.txt
 
 Examples:
-cd ~/repositories/project-of-interest
-${0} setup.sh
-${0} week1/hw1.1.c
+  cd ~/repositories/project-of-interest
+  ${0} setup.sh
+  ${0} week1/hw1.1.c
 
 EOS
 }
