@@ -40,7 +40,3 @@ git co master
 rm ~/gittemp
 
 echo "</body></html>" >> ../$1.output/index.html
-
-
-a b
-b c 
