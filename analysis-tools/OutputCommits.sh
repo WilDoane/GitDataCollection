@@ -22,8 +22,25 @@ EOS
     exit 1
 }
 
+
+
+
+
+defaultcss='
+<style>
+  a {
+    font-size: 20pt;
+  }
+</style>
+'
+
+
+
+
+
+
 mkdir ../$1.output
-echo "<html><body>" > ../$1.output/index.html
+echo "<html>${defaultcss}<body>" > ../$1.output/index.html
 
 git log --pretty=format:"%h %p %ai" > ~/gittemp
 
