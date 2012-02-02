@@ -3,6 +3,25 @@
 # goal: checkout each version of a file ($1) and generate 
 #       an HTML file with that content
 
+function usage () {
+   cat <<EOS
+${0} - Generate an HTML version of git commits for a given file
+
+Usage ${0} file.txt
+
+Examples:
+cd ~/repositories/project-of-interest
+${0} setup.sh
+${0} week1/hw1.1.c
+
+EOS
+}
+
+[[ -e "${1}" ]] || {            
+    usage
+    exit 1
+}
+
 mkdir ../$1.output
 echo "<html><body>" > ../$1.output/index.html
 
