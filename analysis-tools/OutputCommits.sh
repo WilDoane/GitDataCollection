@@ -38,13 +38,14 @@ defaultcss='
 </style>
 '
 
+OUTPUT_DIR=~/gitdatacollection
+
+OUTPUT_FILE=$OUTPUT_DIR/index.html
 
 
 
-
-
-mkdir ../${1}.output
-echo "<html><head>${defaultcss}</head><body>"  > ../${1}.output/index.html
+mkdir $OUTPUT_DIR
+echo "<html><head>${defaultcss}</head><body>"  > $OUTPUT_FILE
 
 # my data source in the form 
 #   2f3512a1 1a4f1b51
@@ -73,14 +74,14 @@ do
 
   git co ${commit_hash}
   if [ -e ${1} ]; then
-    echo "<a name='${commit_hash}'></a>" >> ../${1}.output/index.html
-    echo "<a href='#${nearest_parent_hash}'>EARLIER</a>" >> ../${1}.output/index.html 
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" >> ../${1}.output/index.html 
-    echo "<a href='#$later'>LATER</a>" >> ../${1}.output/index.html 
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" >> ../${1}.output/index.html 
-    echo "${commit_hash} ${commit_date}" >> ../${1}.output/index.html 
-    echo "<br />" >> ../${1}.output/index.html
-    echo "<pre>" >> ../${1}.output/index.html 
+    echo "<a name='${commit_hash}'></a>" >> $OUTPUT_FILE
+    echo "<a href='#${nearest_parent_hash}'>EARLIER</a>" >> $OUTPUT_FILE 
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" >> $OUTPUT_FILE 
+    echo "<a href='#$later'>LATER</a>" >> $OUTPUT_FILE 
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" >> $OUTPUT_FILE 
+    echo "${commit_hash} ${commit_date}" >> $OUTPUT_FILE 
+    echo "<br />" >> $OUTPUT_FILE
+    echo "<pre>" >> $OUTPUT_FILE 
     
     git blame -nsb ${1} > ~/gitblame
 
@@ -88,26 +89,26 @@ do
     do
       if [[ ${line} =~ "${commit_hash}" ]]
         then
-          echo -n "<span class='changed'>" >> ../${1}.output/index.html
+          echo -n "<span class='changed'>" >> $OUTPUT_FILE
       fi
 
-      echo "$line" >> ../${1}.output/index.html
+      echo "$line" >> $OUTPUT_FILE
 
       if [[ ${line} =~ "${commit_hash}" ]]
         then
-          echo -n "</span>" >> ../${1}.output/index.html
+          echo -n "</span>" >> $OUTPUT_FILE
       fi
     done < ~/gitblame
 
 
 
 
-    #git blame -nsb ${1} >> ../${1}.output/index.html
+    #git blame -nsb ${1} >> $OUTPUT_FILE
     
 
-    #cat ${1} >> ../${1}.output/index.html
-    echo "</pre>" >> ../${1}.output/index.html  
-    echo "<br />&nbsp;<hr />&nbsp;<br />&nbsp;" >> ../${1}.output/index.html
+    #cat ${1} >> $OUTPUT_FILE
+    echo "</pre>" >> $OUTPUT_FILE  
+    echo "<br />&nbsp;<hr />&nbsp;<br />&nbsp;" >> $OUTPUT_FILE
 
     # cp ${1} ../${1}.output/$commit1.html
     # do more here... add spans, add html
@@ -126,6 +127,6 @@ git co master
 
 #rm ~/gittemp
 
-echo "</body></html>" >> ../${1}.output/index.html
+echo "</body></html>" >> $OUTPUT_FILE
 
-open "../${1}.output/index.html"
+open "$OUTPUT_FILE"
