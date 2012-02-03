@@ -31,6 +31,9 @@ defaultcss='
   a {
     font-size: 20pt;
   }
+  .changed {
+    color: green;
+  }
 </style>
 '
 
@@ -40,7 +43,7 @@ defaultcss='
 
 
 mkdir ../${1}.output
-echo "<html>${defaultcss}<body>"  > ../${1}.output/index.html
+echo "<html><head>${defaultcss}</head><body>"  > ../${1}.output/index.html
 
 # my data source in the form 
 #   2f3512a1 1a4f1b51
