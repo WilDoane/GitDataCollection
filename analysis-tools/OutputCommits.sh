@@ -5,7 +5,7 @@
 
 function usage () {
    cat <<EOS
-   
+
 ${0} - Generate an HTML version of git commits for a given file
 
 Usage: ${0} file.c
@@ -63,7 +63,6 @@ echo "<html><head>${defaultcss}</head><body><table><tr>"  > $OUTPUT_FILE
 
 
 git whatchanged --pretty="%h %ai" ${1} | grep -e "^[0-9a-f]" > ~/gittemp
-
 echo "junk-to-ensure-first-commit-gets-output" >> ~/gittemp
 
 reading_first_line="true"
@@ -95,7 +94,7 @@ do
     echo "<br />" >> $OUTPUT_FILE
     echo "<pre>" >> $OUTPUT_FILE 
     
-    git blame -nsb ${1} > ~/gitblame
+    git blame -ns ${1} > ~/gitblame
 
     while read line
     do
