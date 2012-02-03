@@ -32,7 +32,8 @@ defaultcss='
     font-size: 20pt;
   }
   .changed {
-    color: green;
+    color: black;
+    background: #00cc00;
   }
 </style>
 '
