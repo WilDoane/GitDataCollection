@@ -31,10 +31,18 @@ defaultcss='
   a {
     font-size: 20pt;
   }
+
+  td {
+    vertical-align: top;
+  }
+
   .changed {
+    width: 100%;
     color: black;
     background: #00cc00;
   }
+
+
 </style>
 '
 
@@ -45,7 +53,7 @@ OUTPUT_FILE=$OUTPUT_DIR/index.html
 
 
 mkdir $OUTPUT_DIR
-echo "<html><head>${defaultcss}</head><body>"  > $OUTPUT_FILE
+echo "<html><head>${defaultcss}</head><body><table><tr>"  > $OUTPUT_FILE
 
 # my data source in the form 
 #   2f3512a1 1a4f1b51
@@ -74,6 +82,7 @@ do
 
   git co ${commit_hash}
   if [ -e ${1} ]; then
+    echo "<td>" >> $OUTPUT_FILE
     echo "<a name='${commit_hash}'></a>" >> $OUTPUT_FILE
     echo "<a href='#${nearest_parent_hash}'>EARLIER</a>" >> $OUTPUT_FILE 
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" >> $OUTPUT_FILE 
@@ -109,6 +118,7 @@ do
     #cat ${1} >> $OUTPUT_FILE
     echo "</pre>" >> $OUTPUT_FILE  
     echo "<br />&nbsp;<hr />&nbsp;<br />&nbsp;" >> $OUTPUT_FILE
+    echo "</td>" >> $OUTPUT_FILE
 
     # cp ${1} ../${1}.output/$commit1.html
     # do more here... add spans, add html
@@ -127,6 +137,6 @@ git co master
 
 #rm ~/gittemp
 
-echo "</body></html>" >> $OUTPUT_FILE
+echo "</tr></table></body></html>" >> $OUTPUT_FILE
 
 open "$OUTPUT_FILE"
