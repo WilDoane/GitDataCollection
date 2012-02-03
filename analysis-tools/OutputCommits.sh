@@ -127,7 +127,7 @@ do
     #cat ${1} >> $OUTPUT_FILE
     echo "</pre>" >> $OUTPUT_FILE  
     echo "<div class='compileroutput'>" >> $OUTPUT_FILE
-    echo `git log  -1 --pretty="%s<p>%b<p>%N"` >> $OUTPUT_FILE
+    echo `git log  -1 --pretty="%s<p>%b<p>%N" $commit_hash ${1}` >> $OUTPUT_FILE
     echo "</div>" >> $OUTPUT_FILE
     echo "</td>" >> $OUTPUT_FILE
 
