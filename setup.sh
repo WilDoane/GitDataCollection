@@ -9,8 +9,7 @@ if ( "$1" == "" ) then
   exit
 endif
 
-chmod 700 ~/research-compiler.sh
-
+# Download the appropriate compiler for the user's shell
 if ( "$SHELL" =~ *tcsh* ) then
   # tcsh version (UMD default shell)
   curl -k https://raw.github.com/WilDoane/GitDataCollection/master/research-compiler-tcsh.sh -o ~/research-compiler.sh
@@ -25,6 +24,10 @@ else
   echo "no setup was performed"
   exit
 endif
+
+
+# Make the research compiler executable
+chmod 700 ~/research-compiler.sh
 
 cd ~
 if ( -d ~/ENEE150 ) then
