@@ -44,6 +44,13 @@ defaultcss='
     background: #00cc00;
   }
 
+  .compileroutput {
+    background: #cccccc;
+    border: 1px ridge #999999;
+    white-space: pre-wrap;
+    font-family: monospace;
+    display: block;
+  }
 
 </style>
 '
@@ -119,7 +126,9 @@ do
 
     #cat ${1} >> $OUTPUT_FILE
     echo "</pre>" >> $OUTPUT_FILE  
-    echo "<br />&nbsp;<hr />&nbsp;<br />&nbsp;" >> $OUTPUT_FILE
+    echo "<div class='compileroutput'>" >> $OUTPUT_FILE
+    echo `git log  -1 --pretty="%s<p>%b<p>%N"` >> $OUTPUT_FILE
+    echo "</div>" >> $OUTPUT_FILE
     echo "</td>" >> $OUTPUT_FILE
 
     # cp ${1} ../${1}.output/$commit1.html
