@@ -87,9 +87,15 @@ do
     do
       if [[ ${line} =~ "${commit_hash}" ]]
         then
-          echo -n "* " >> ../${1}.output/index.html
+          echo -n "<span class='changed'>" >> ../${1}.output/index.html
       fi
+
       echo "$line" >> ../${1}.output/index.html
+
+      if [[ ${line} =~ "${commit_hash}" ]]
+        then
+          echo -n "</span>" >> ../${1}.output/index.html
+      fi
     done < ~/gitblame
 
 
