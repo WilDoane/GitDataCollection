@@ -1,0 +1,56 @@
+# works
+
+while read a 
+do
+  echo "after 1st read: $a"
+  read a
+  echo "after 2nd read: $a"
+done < ~/gittemp
+
+
+
+
+
+echo "----------------------"
+
+# does NOT work
+read a < ~/gittemp
+echo "after 1st read: $a"
+read a < ~/gittemp
+echo "after 2nd read: $a"
+read a < ~/gittemp
+echo "after 3rd read: $a"
+
+echo "----------------------"
+
+# does NOT work
+read a < ~/gittemp
+while [ 1 ]
+do
+  echo "after 1st read: $a"
+  read a
+  echo "after 2nd read: $a"
+done
+
+
+echo "----------------------"
+
+# does NOT work
+while [ 1 ]
+do
+  read a < ~/gittemp
+  echo "after 1st read: $a"
+  read a
+  echo "after 2nd read: $a"
+done
+
+
+echo "----------------------"
+
+# does NOT work
+read a < ~/gittemp
+echo "after 1st read: $a"
+read a
+echo "after 2nd read: $a"
+read a
+echo "after 3rd read: $a"
