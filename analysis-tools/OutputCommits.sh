@@ -92,7 +92,7 @@ do
           echo -n "<span class='changed'>" >> $OUTPUT_FILE
       fi
 
-      echo "$line" >> $OUTPUT_FILE
+      echo "${line//</&lt;}" >> $OUTPUT_FILE
 
       if [[ ${line} =~ "${commit_hash}" ]]
         then
