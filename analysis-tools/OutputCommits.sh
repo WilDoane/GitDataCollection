@@ -64,6 +64,7 @@ echo "<html><head>${defaultcss}</head><body><table><tr>"  > $OUTPUT_FILE
 
 git whatchanged --pretty="%h %ai" ${1} | grep -e "^[0-9a-f]" > ~/gittemp
 
+echo "junk-to-ensure-first-commit-gets-output" >> ~/gittemp
 
 reading_first_line="true"
 while read commit_hash commit_date
