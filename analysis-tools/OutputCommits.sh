@@ -77,7 +77,24 @@ do
     echo "${commit_hash} ${commit_date}" >> ../${1}.output/index.html 
     echo "<br />" >> ../${1}.output/index.html
     echo "<pre>" >> ../${1}.output/index.html 
-    git blame -nsb ${1} >> ../${1}.output/index.html
+    
+    git blame -nsb ${1} > ~/gitblame
+
+    while read line
+    do
+      if [[ ${line} =~ "${commit_hash}" ]]
+        then
+          echo -n "* " >> ../${1}.output/index.html
+      fi
+      echo "$line" >> ../${1}.output/index.html
+    done < ~/gitblame
+
+
+
+
+    #git blame -nsb ${1} >> ../${1}.output/index.html
+    
+
     #cat ${1} >> ../${1}.output/index.html
     echo "</pre>" >> ../${1}.output/index.html  
     echo "<br />&nbsp;<hr />&nbsp;<br />&nbsp;" >> ../${1}.output/index.html
