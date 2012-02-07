@@ -69,7 +69,7 @@ echo "<html><head>${defaultcss}</head><body><table><tr>"  > $OUTPUT_FILE
 # git log --pretty=format:"%h %p" > ~/gittemp
 
 
-git whatchanged --pretty="%h %ai" ${1} | grep -e "^[0-9a-f]" > ~/gittemp
+git whatchanged --pretty="%h %ai" ${1} | grep -e "^[0-9a-f]" | tail -r > ~/gittemp
 echo "junk-to-ensure-first-commit-gets-output" >> ~/gittemp
 
 reading_first_line="true"
