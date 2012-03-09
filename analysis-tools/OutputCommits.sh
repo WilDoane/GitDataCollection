@@ -93,10 +93,10 @@ do
   if [ -e ${1} ]; then
     echo "<td>" >> $OUTPUT_FILE
     echo "<a name='${commit_hash}'></a>" >> $OUTPUT_FILE
-    echo "<a href='#${nearest_parent_hash}'>EARLIER</a>" >> $OUTPUT_FILE 
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" >> $OUTPUT_FILE 
-    echo "<a href='#$later'>LATER</a>" >> $OUTPUT_FILE 
-    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" >> $OUTPUT_FILE 
+    #echo "<a href='#${nearest_parent_hash}'>EARLIER</a>" >> $OUTPUT_FILE 
+    #echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" >> $OUTPUT_FILE 
+    #echo "<a href='#$later'>LATER</a>" >> $OUTPUT_FILE 
+    #echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" >> $OUTPUT_FILE 
     echo "${commit_hash} ${commit_date}" >> $OUTPUT_FILE 
     echo "<br />" >> $OUTPUT_FILE
     echo "<pre>" >> $OUTPUT_FILE 
