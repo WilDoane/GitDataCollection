@@ -110,6 +110,8 @@ do
           echo -n "<span class='changed'>" >> $OUTPUT_FILE
       fi
 
+      # inline string replacement
+      # http://www.thegeekstuff.com/2010/07/bash-string-manipulation/
       echo "${line//</&lt;}" >> $OUTPUT_FILE
 
       if [[ ${line} =~ "${commit_hash}" ]]
