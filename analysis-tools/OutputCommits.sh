@@ -57,7 +57,7 @@ defaultcss='
 
 OUTPUT_DIR=~/gitdatacollection
 
-OUTPUT_FILE=$OUTPUT_DIR/index.html
+OUTPUT_FILE=$OUTPUT_DIR/$1.html
 
 
 
