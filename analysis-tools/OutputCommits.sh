@@ -128,8 +128,13 @@ do
 
     #cat ${1} >> $OUTPUT_FILE
     echo "</pre>" >> $OUTPUT_FILE  
+
+    # using awk to replace the end of line characters with HTML br tags
+    # http://www.catonmat.net/blog/wp-content/uploads/2008/09/awk1line.txt
+    log=`git log  -1 --pretty="%s<p>%b<p>%N" $commit_hash ${1} | awk ' { sub(/$/, "<br>"); print }'`
+
     echo "<div class='compileroutput'>" >> $OUTPUT_FILE
-    echo `git log  -1 --pretty="%s<p>%b<p>%N" $commit_hash ${1}` >> $OUTPUT_FILE
+    echo $log >> $OUTPUT_FILE
     echo "</div>" >> $OUTPUT_FILE
     echo "</td>" >> $OUTPUT_FILE
 
