@@ -112,7 +112,9 @@ do
 
       # inline string replacement
       # http://www.thegeekstuff.com/2010/07/bash-string-manipulation/
-      echo "${line//</&lt;}" >> $OUTPUT_FILE
+      
+      # rewrapping a line at a time is grossly inefficient and slow
+      echo "${line//</&lt;}" | fold -sw 100 >> $OUTPUT_FILE
 
       if [[ ${line} =~ "${commit_hash}" ]]
         then
