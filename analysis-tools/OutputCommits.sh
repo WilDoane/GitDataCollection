@@ -57,6 +57,7 @@ defaultcss='
 </style>
 '
 
+# convert deep paths into simple filenames
 FILENAME="$(echo $1 | tr '/' '_')"
 
 OUTPUT_DIR=~/gitdatacollection
@@ -67,11 +68,7 @@ OUTPUT_FILE=$OUTPUT_DIR/$FILENAME.html
 mkdir $OUTPUT_DIR
 echo "<html><head>${defaultcss}</head><body><table><tr>"  > $OUTPUT_FILE
 
-# my data source in the form 
-#   2f3512a1 1a4f1b51
-# git log --pretty=format:"%h %p" > ~/gittemp
-
-
+# get the commit hashes of every commit where $1 was touched
 git whatchanged --pretty="%h %ai" ${1} | grep -e "^[0-9a-f]" | tail -r > ~/gittemp
 echo "junk-to-ensure-first-commit-gets-output" >> ~/gittemp
 
@@ -104,8 +101,11 @@ do
     echo "<br />" >> $OUTPUT_FILE
     echo "<pre>" >> $OUTPUT_FILE 
     
+    # write the raw git blame for $1 to a file
     git blame -ns ${1} > ~/gitblame
 
+    # read each line of the blame file to see whether that line changed
+    # in the current commit and, if so, add an HTML span around it for styling
     while read line
     do
       if [[ ${line} =~ "${commit_hash}" ]]
@@ -137,6 +137,7 @@ do
     # http://www.catonmat.net/blog/wp-content/uploads/2008/09/awk1line.txt
     log=`git log  -1 --pretty="%s<p>%b<p>%N" $commit_hash ${1} | awk ' { sub(/$/, "<br>"); print }'`
 
+    # add the compiler call and compile-time error messages to the HTML output
     echo "<div class='compileroutput'>" >> $OUTPUT_FILE
     echo $log >> $OUTPUT_FILE
     echo "</div>" >> $OUTPUT_FILE
@@ -155,10 +156,12 @@ do
 
 done < ~/gittemp
 
+# return the repo to its current state
 git checkout master
 
 #rm ~/gittemp
 
 echo "</tr></table></body></html>" >> $OUTPUT_FILE
 
+# open the analysis HTML file in the user's default web browser
 open "$OUTPUT_FILE"
