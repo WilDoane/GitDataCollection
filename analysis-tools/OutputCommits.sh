@@ -6,15 +6,17 @@
 function usage () {
    cat <<EOS
 
-${0} - Generate an HTML version of git commits for a given file
+${0} - Generate an HTML version of git commits for a given file. Output is stored in ~/gitdatacollection
 
 Usage: ${0} file.c
 
-Examples:
-  cd ~/repositories/project-of-interest
-  ${0} setup.sh
-  ${0} week1/hw1.1.c
-  open ~/gitdatacollection/index.html
+Example:
+  cd repositories
+  curl -k https://raw.github.com/WilDoane/GitDataCollection/master/analysis-tools/OutputCommits.sh -o OutputCommits.sh
+  chmod 700 OutputCommits.sh  
+  cd git-repo-of-interest
+  ../OutputCommits.sh setup.sh
+  ../OutputCommits.sh week1/hw1.1.c
 
 EOS
 }
@@ -55,10 +57,11 @@ defaultcss='
 </style>
 '
 
+FILENAME="$(echo $1 | tr '/' '_')"
+
 OUTPUT_DIR=~/gitdatacollection
 
-OUTPUT_FILE=$OUTPUT_DIR/$1.html
-
+OUTPUT_FILE=$OUTPUT_DIR/$FILENAME.html
 
 
 mkdir $OUTPUT_DIR
