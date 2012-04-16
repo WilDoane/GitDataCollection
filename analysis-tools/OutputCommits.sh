@@ -89,7 +89,7 @@ do
       np_commit_date=$temp
   fi
 
-  git co ${commit_hash}
+  git checkout ${commit_hash}
   if [ -e ${1} ]; then
     echo "<td>" >> $OUTPUT_FILE
     echo "<a name='${commit_hash}'></a>" >> $OUTPUT_FILE
@@ -152,7 +152,7 @@ do
 
 done < ~/gittemp
 
-git co master
+git checkout master
 
 #rm ~/gittemp
 
