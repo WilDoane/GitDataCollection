@@ -101,36 +101,11 @@ do
     echo "<br />" >> $OUTPUT_FILE
     echo "<pre>" >> $OUTPUT_FILE 
     
-    # write the raw git blame for $1 to a file
-    git blame -ns ${1} > ~/gitblame
-
-    # read each line of the blame file to see whether that line changed
-    # in the current commit and, if so, add an HTML span around it for styling
-    while read line
-    do
-      if [[ ${line} =~ "${commit_hash}" ]]
-        then
-          echo -n "<span class='changed'>" >> $OUTPUT_FILE
-      fi
-
-      # inline string replacement
-      # http://www.thegeekstuff.com/2010/07/bash-string-manipulation/
-      
-      # rewrapping a line at a time is grossly inefficient and slow
-      echo "${line//</&lt;}" | fold -sw 100 >> $OUTPUT_FILE
-
-      if [[ ${line} =~ "${commit_hash}" ]]
-        then
-          echo -n "</span>" >> $OUTPUT_FILE
-      fi
-    done < ~/gitblame
-
-
-
-
-    #git blame -nsb ${1} >> $OUTPUT_FILE
-    
-    #cat ${1} >> $OUTPUT_FILE
+    # get the raw git blame for $1 ...
+    # pipe it into sed to wrap lines that changed in the current commit with an HTML span for styling...
+    # and append the output to our HTML file
+    git blame -ns ${1} | sed 's/'$commit_hash'.*/<span class="changed">&<\/span>/'  >> $OUTPUT_FILE
+   
     echo "</pre>" >> $OUTPUT_FILE  
 
     # using awk to replace the end of line characters with HTML br tags
