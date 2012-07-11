@@ -12,6 +12,7 @@ if [ -e /usr/local/bin/gcc ]; then GCC=/usr/local/bin/gcc; fi;
 # capturing STDERR (2) to STDOUT (&1)
 # and store the STDOUT (i.e., the compiler output) in the variable RESULT
 RESULT=$($GCC $@ 2>&1)
+COMPILE_TIME_PATH=$(git rev-parse --show-prefix)
 
 # add modified AND new files to the index
 # Redirection solution adapted from http://www.xaprb.com/blog/2006/06/06/what-does-devnull-21-mean/
@@ -25,6 +26,7 @@ git add -u > /dev/null 2>&1
 # and an extended description (the compiler feedback to the user)
 # To create a multi-line message, we use http://stackoverflow.com/questions/5064563/add-line-break-to-git-commit-m-from-command-line
 git commit -q -F- << EOF > /dev/null 2>&1
+cd $COMPILE_TIME_PATH
 gcc $@
 
 $RESULT
