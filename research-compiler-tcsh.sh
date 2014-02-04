@@ -9,6 +9,8 @@ if ( -e /usr/local/bin/gcc ) set gcccompiler = /usr/local/bin/gcc
 # Creating a temporary file to store compiler output
 set tempfile = `mktemp`
 
+set compileTimePath = `git rev-parse --show-prefix`
+
 # Constructing the gcc compiler call from command-line arguments
 set compilerCall = ""
 set x = "0"
@@ -31,7 +33,8 @@ git add -u >& /dev/null
 # and an extended description (the compiler feedback to the user)
 # To create a multi-line message, we use http://stackoverflow.com/questions/5064563/add-line-break-to-git-commit-m-from-command-line
 git commit -q -F- << EOF >& /dev/null
-gcc$compilerCall
+cd $compileTimePath
+gcc $compilerCall
 
 `cat $tempfile`
 
